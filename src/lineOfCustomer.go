@@ -15,7 +15,7 @@ func (x customer) GetItemCount() {
 	fmt.Println(x.itemCount)
 }
 
-func (x customer)
+// func (x customer)
 
 func lineOfCustomer() {
 

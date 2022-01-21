@@ -1,4 +1,4 @@
-package Cashier
+package cashier
 
 import "fmt"
 
