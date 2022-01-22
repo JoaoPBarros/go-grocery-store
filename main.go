@@ -9,6 +9,10 @@ import (
 	"strings"
 )
 
+var t int = 0
+var registersQty int = 0
+var registers = make([]register, 0)
+
 type customer struct {
 	typeOfCustomer string
 	timeArrived    int
@@ -22,31 +26,29 @@ type register struct {
 	arrOfCustomer []customer
 }
 
-var registers = make([]register, 0)
-
 func createQtOfRegisters(x int) {
-	registers := make([]register, (x + 1))
-
+	registers = make([]register, x)
+	i := 0
 	if x != 1 {
-		for i := 0; i < (x - 1); i++ {
-
+		for i < (x - 1) {
+			i++
 			registers[i] = register{
-				position: i + 1,
+				position: i,
 				training: false,
 			}
 		}
 	}
 
-	registers[x] = register{
-		position: x,
+	registers[i] = register{
+		position: x - 1,
 		training: true,
 	}
+
 }
 
-var t int = 0
-var registersQty int = 0
+func resolveClientPosition(x []string) {
+	fmt.Println(x)
 
-func resolveClientPosition(x [3]string) {
 	for i := 0; i < len(registers); i++ {
 		if len(registers[i].arrOfCustomer) == 0 {
 			intVar, err := strconv.Atoi(x[1])
@@ -64,6 +66,8 @@ func resolveClientPosition(x [3]string) {
 				timeArrived:    intVar,
 				itemCount:      intVar2,
 			})
+			fmt.Println(registers[i].arrOfCustomer, registers[i])
+			break
 		}
 		registersQty = registersQty + 1
 	}
@@ -88,10 +92,10 @@ func cashier(x string) {
 			fileLine = fileLine + 1
 
 			// fmt.Println(scanner.Text())
-			fmt.Println(strings.Split(scanner.Text(), " "))
+			res := strings.Split(scanner.Text(), " ")
+			resolveClientPosition(res)
 
-		}
-		if fileLine == 0 {
+		} else {
 			fileLine = fileLine + 1
 
 			intVar, err := strconv.Atoi(scanner.Text())

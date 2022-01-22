@@ -1,8 +1,8 @@
-package cashier
+package main
 
 import "fmt"
 
-func Cashier() {
+func Tashier() {
 	fmt.Println("teste")
 }
 
